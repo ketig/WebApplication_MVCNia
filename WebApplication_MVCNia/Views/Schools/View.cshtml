@@ -1,0 +1,18 @@
+﻿@using WebApplication_MVCNia.Models.Entities;
+@model School
+@{
+    ViewData["Title"] = "View Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">School Page</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Name</h5>
+            <p class="card-text">Director: @Model.Director</p>
+            <p class="card-text">Foundation Date: @Model.FoundationDate</p>
+            <p class="card-text">Students Quantity: @Model.StudentsQuantity</p>
+        </div>
+    </div>
+</div>
