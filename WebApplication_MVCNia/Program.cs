@@ -1,7 +1,18 @@
+using Microsoft.EntityFrameworkCore;
+using WebApplication_MVCNia.Contracts;
+using WebApplication_MVCNia.Data;
+using WebApplication_MVCNia.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Database
+string connectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
+builder.Services.AddDbContext<SchoolsContext>(options => options.UseSqlServer(connectionString));
+
+builder.Services.AddScoped<ISchoolsServices, SchoolsServices>();
 
 var app = builder.Build();
 
@@ -22,6 +33,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Schools}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 await app.RunAsync();
